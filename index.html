@@ -2,98 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/index.css" />
+    <title>Todo</title>
+     <!-- <link rel="stylesheet" href="css/index.css" /> -->
+     <style>body {
+        font-family: 'Arial', sans-serif;
+        background-color: #F7F9FC;
+        padding: 20px;
+      }
+      
+      li {
+        color: #333;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+      }
+      
+      li:hover {
+        background-color: #E4E7ED;
+      }
+      
+      .completed {
+        color: #A5ACB3;
+        text-decoration: line-through;
+      }
+      
+      input[type="text"], button {
+        padding: 10px;
+        border: 1px solid #D4D9E1;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      
+      button {
+        background-color: #4C8EF7;
+        color: #FFF;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      button:hover {
+        background-color: #357ABD;
+      }</style>
+     <script>function add() {
+        const inputValue = document.getElementById("todo").value.trim();
+      
+        if (inputValue) {
+            const taskList = document.getElementById("todo_list");
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<span>${inputValue}</span>`;
+            listItem.onclick = markAsCompleted;  // 为新任务添加点击事件
+            taskList.appendChild(listItem);
+        }
+      
+        document.getElementById("todo").value = "";
+      }
+      
+      function markAsCompleted(event) {
+        const task = event.currentTarget;
+        if (task.classList.contains('completed')) {
+            task.classList.remove('completed');
+        } else {
+            task.classList.add('completed');
+        }
+      }</script>
 </head>
 <body>
-    <header>
-        <h1>银河电影院</h1>
-    </header>
-    <section class="mainbox">
-        <div class="column">
-            <div class="panel line">
-                <h2>
-                    该年消费走势
-                </h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-            </div>
-            <div class="panel bar">
-                <h2>
-                    各类型电影观看人次
-                </h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-            </div>
-            <div class="panel pie">
-                <h2>
-                    电影消费年龄占比
-                </h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="no">
-                <div class="no-hd">
-                    <ul>
-                        <li>
-                            12303次
-                        </li>
-                        <li>
-                            738180元
-                        </li>
-                    </ul>
-                </div>
-                <div class="no-bd">
-                    <ul>
-                        <li>
-                            总观影次数
-                        </li>
-                        <li>
-                            总票房收入
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="no">
-                <div class="no-hd">
-                    <ul>
-                        <li>
-                            票房第一：流浪地球
-                        </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div class="map">
-                <div class="map1">
-                </div>
-            </div>
-            
-        </div>
-        <div class="column">
-            <div class="panel pie1">
-                <h2>开销分布</h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-              </div>
-            <div class="panel bar1">
-                <h2>其他收入分布</h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-              </div>
-              <div class="panel line1">
-                <h2>利润折线图</h2>
-                <div class="chart"></div>
-                <div class="panel-footer"></div>
-              </div>
-        </div>
-    </section>
-    <script src="js/flexible.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/echarts.min.js"></script>
-    <script src="js/index.js"></script>
+<div>
+    <input type="text" id="todo" placeholder="请输入你的任务名称">
+    <button onclick="add()">添加</button>
+</div>
+
+<div>
+    <ul id="todo_list">
+        <li><span>吃饭</span></li>
+        <li><span>学习</span></li>
+        <li><span>打篮球</span></li>
+    </ul>
+</div>
 </body>
 </html>
